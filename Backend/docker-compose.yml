@@ -1,0 +1,61 @@
+version: '3.9'
+
+services:
+  service-registry:
+    build: ./service-registry
+    container_name: service-registry
+    networks:
+      - private-net
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    networks:
+      - private-net
+    depends_on:
+      - service-registry
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    networks:
+      - private-net
+    depends_on:
+      - service-registry
+      - config-server
+      
+  service-a:
+    build: ./service-a
+    container_name: service-a
+    networks:
+      - private-net
+    depends_on:
+      - service-registry
+      - config-server
+      
+  service-b:
+    build: ./service-b
+    container_name: service-b
+    networks:
+      - private-net
+    depends_on:
+      - service-registry
+      - config-server
+      
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    networks:
+      - public-net
+      - private-net
+    depends_on:
+      - service-registry
+      - config-server
+    ports:
+      - "8080:8080"
+
+networks:
+  public-net:
+    driver: bridge
+  private-net:
+    driver: bridge
