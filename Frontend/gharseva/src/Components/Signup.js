@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import lg1 from '../images/lg1.avif'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogle , faFacebookF,faGithub,faLinkedin} from '@fortawesome/free-brands-svg-icons'
 function Signup() {
     return (
         <div>
@@ -21,7 +23,11 @@ function Signup() {
                     </form>
                     <div className='mx-auto my-4'>
                         <p>or register with social plateforms</p>
-                        <div>
+                        <div className='w-75 mx-auto d-flex border border-2 my-4 rounded-5'>
+                        <div className=' w-25 py-2'><Link  to= '#' className="text-dark text-decoration-none"><FontAwesomeIcon  icon={faGoogle} size="lg"/></Link></div>
+                        <div className='border border-1 w-25 py-2'><Link  to= '#' className="text-dark text-decoration-none"><FontAwesomeIcon icon={faFacebookF} size="lg"/></Link></div>
+                        <div className='border border-1 w-25 py-2'><Link  to= '#' className="text-dark text-decoration-none"><FontAwesomeIcon  icon={faLinkedin} size="lg"/></Link></div>
+                        <div className=' w-25 py-2'><Link  to= '#' className="text-dark text-decoration-none"><FontAwesomeIcon icon={faGithub} size="lg"/></Link></div>
                         </div>
                     </div>
 
